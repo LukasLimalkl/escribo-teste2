@@ -1,5 +1,5 @@
 const express = require('express');
-const { singIn, singUp } = require('./controllers');
+const { singIn, singUp, verifyToken } = require('./controllers');
 const router = express();
 
 router.get('/', (req, res) => {
@@ -7,6 +7,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/login', singIn);
-router.post('/singUp', singUp);
+router.post('/singup', singUp);
+
+router.get('/sua-rota', verifyToken, (req, res) => {
+	res.json({ mensagem: 'Rota protegida acessada com sucesso' });
+});
 
 module.exports = router;

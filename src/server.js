@@ -7,6 +7,8 @@ const PORT = process.env.PORT;
 
 app.use(cors());
 
+mongoose.set('strictQuery', false);
+
 mongoose
 	.connect(process.env.DATABASE, {
 		useNewUrlParser: true,
