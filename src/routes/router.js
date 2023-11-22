@@ -7,8 +7,8 @@ router.get('/', (req, res) => {
 	res.json({ messagem: 'Use o endpoint /api-doc para documentacao da api' });
 });
 
-router.post('/login', signIn);
-router.post('/singup', signUp);
+router.post('/signin', signIn);
+router.post('/signup', signUp);
 
 router.get('/getuser', verifyToken, getInfos);
 
