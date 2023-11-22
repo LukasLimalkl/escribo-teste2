@@ -61,7 +61,7 @@ Voce pode acessar a api e ve mais sobre no Link:
 ```
 ## Envie um header com o nome bearer e no valor insira o token que eh retornado apos cadastrar ou logar
 	Exemplo: 
- ![image](https://github.com/LukasLimalkl/escribo-teste2/assets/58051821/20a974ef-a0c7-4321-abfb-ecc8602a0368)
+ ![image](https://github.com/LukasLimalkl/escribo-teste2/assets/58051821/8449bb84-2e90-49c2-b71c-c6aa17a91696)
 
 
 
