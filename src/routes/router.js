@@ -4,7 +4,7 @@ const { verifyToken } = require('../middleware');
 const router = express();
 
 router.get('/', (req, res) => {
-	res.send('hello word');
+	res.json({ messagem: 'Use o endpoint /api-doc para documentacao da api' });
 });
 
 router.post('/login', signIn);

@@ -1,0 +1,185 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "Escribo",
+		"description": "Documentacao da api escribo_teste2",
+		"version": "1.0.0"
+	},
+	"paths": {
+		"/signup": {
+			"post": {
+				"summary": "Endpoint para cadastrar um novo usuário",
+				"description": "Cria um novo usuário na aplicação",
+				"tags": ["Cadastro"],
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"description": "Dados para cadastrar um novo usuário",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"nome": {
+									"type": "string",
+									"example": "John Doe"
+								},
+								"email": {
+									"type": "string",
+									"example": "john@example.com"
+								},
+								"senha": {
+									"type": "string",
+									"example": "senha123"
+								},
+								"telefones": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"numero": {
+												"type": "string",
+												"example": "123456789"
+											},
+											"ddd": {
+												"type": "string",
+												"example": "11"
+											}
+										},
+										"required": ["numero", "ddd"]
+									}
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Usuário cadastrado com sucesso",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"id": { "type": "string" },
+								"createdAt": { "type": "string" },
+								"updatedAt": { "type": "string" },
+								"ultimo_login": { "type": "string" },
+								"token": { "type": "string" }
+							}
+						}
+					},
+					"400": {
+						"description": "Email já existente"
+					},
+					"500": {
+						"description": "Erro ao cadastrar usuário"
+					}
+				}
+			}
+		},
+		"/signin": {
+			"post": {
+				"summary": "Endpoint para logar o usuario apos ele cadastrar",
+				"description": "Realiza a autenticação do usuário e gera um token de acesso",
+				"tags": ["Login"],
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"description": "Credenciais de login do usuário",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"email": {
+									"type": "string",
+									"example": "usuario@exemplo.com"
+								},
+								"senha": {
+									"type": "string",
+									"example": "senha123"
+								}
+							},
+							"required": ["email", "senha"]
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Sucesso",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"userId": { "type": "string" },
+								"createdAt": { "type": "string" },
+								"updatedAt": { "type": "string" },
+								"ultimo_login": { "type": "string" },
+								"token": { "type": "string" }
+							}
+						}
+					},
+					"401": {
+						"description": "Usuário e/ou senha inválidos"
+					},
+					"500": {
+						"description": "Erro ao realizar login"
+					}
+				}
+			}
+		},
+		"/getuser": {
+			"get": {
+				"summary": "Endpoint para obter informações do usuário autenticado",
+				"description": "Obtém informações do usuário com base no token de autenticação",
+				"tags": ["Usuários"],
+				"parameters": [
+					{
+						"name": "bearer",
+						"in": "header",
+						"description": "Bearer token do usuário autenticado",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Informações do usuário obtidas com sucesso",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"mensagem": { "type": "string" },
+								"user": {
+									"type": "object",
+									"properties": {
+											"mensagem": "Token válido",
+											"user": {
+												"_id": { "type": "string" },
+												"nome": { "type": "string" },
+												"email": { "type": "string" },
+												"senha": { "type": "string" },
+												"telefones": [
+													{
+														"numero": { "type": "string" },
+														"ddd": { "type": "string" },
+														"_id": { "type": "string" }
+													}
+												],
+												"createdAt": { "type": "string" },
+												"updatedAt": { "type": "string" },
+												"__v": { "type": "number" },
+												"token": { "type": "string" }
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Token expirado ou inválido"
+					}
+				}
+			}
+		}
+
+}
+

@@ -17,7 +17,7 @@ mongoose
 	.then(() => {
 		app.listen(PORT, () => {
 			console.log('Db Connected');
-			console.log('running on http://localhost:3333/');
+			console.log('running on http://localhost:3333/api-doc');
 			console.log('Server running on port:', PORT);
 		});
 	})
