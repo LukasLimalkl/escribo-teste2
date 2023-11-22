@@ -1,38 +1,17 @@
-const jwt = require('jsonwebtoken');
-
-const verifyToken = (req, res, next) => {
-	const authHeader = req.headers['authorization'];
-
-	if (typeof authHeader !== 'undefined') {
-		const token = authHeader.split(' ')[1];
-
-		if (token) {
-			jwt.verify(token, 'seu_segredo_secreto', (err, decoded) => {
-				if (err) {
-					if (err.name === 'JsonWebTokenError') {
-						return res.status(403).json({ mensagem: 'Token inválido' });
-					} else if (err.name === 'TokenExpiredError') {
-						return res.status(403).json({ mensagem: 'Token expirado' });
-					} else {
-						return res
-							.status(500)
-							.json({ mensagem: 'Erro ao processar o token' });
-					}
-				} else {
-					req.decoded = decoded;
-					next();
-				}
-			});
-		} else {
-			return res
-				.status(401)
-				.json({ mensagem: 'Token de autenticação não fornecido' });
-		}
+const verifyToken = async (req, res, next) => {
+	const bearerHeader = req.headers['bearer'];
+	if (typeof bearerHeader !== 'undefined') {
+		const bearer = bearerHeader.split(' ');
+		const bearerToken = bearer[1];
+		req.token = bearerToken;
+		next();
 	} else {
-		return res
-			.status(403)
-			.json({ mensagem: 'Cabeçalho de autorização não encontrado' });
+		res.sendStatus(403).json({ mensagem: 'Token Invalido' });
 	}
 };
 
-module.exports = { verifyToken };
+const errorRouter = (req, res) => {
+	res.status(404).json({ messagem: 'Essa rota nao existe' });
+};
+
+module.exports = { verifyToken, errorRouter };
