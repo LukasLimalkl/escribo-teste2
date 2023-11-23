@@ -4,7 +4,6 @@ const verifyToken = async (req, res, next) => {
 		res.status(403).json({ mensagem: 'Token não fornecido' });
 		return;
 	}
-
 	const bearerToken = bearerHeader;
 	req.token = bearerToken;
 	next();
