@@ -60,6 +60,10 @@ Voce pode acessar a api e ve mais sobre no Link:
    /getusers
 ```
 ## Envie um header com o nome bearer e no valor insira o token que eh retornado apos cadastrar ou logar
+	Exemplo: 
+ ![image](https://github.com/LukasLimalkl/escribo-teste2/assets/58051821/8449bb84-2e90-49c2-b71c-c6aa17a91696)
+
 
 
 Screenshots
+![image](https://github.com/LukasLimalkl/escribo-teste2/assets/58051821/56e42748-0e75-4791-9ff0-8a392490b860)
