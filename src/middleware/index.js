@@ -5,13 +5,7 @@ const verifyToken = async (req, res, next) => {
 		return;
 	}
 
-	const bearer = bearerHeader.split(' ');
-	if (bearer.length !== 2 || bearer[0] !== 'bearer') {
-		res.status(403).json({ mensagem: 'Formato de token inválido' });
-		return;
-	}
-
-	const bearerToken = bearer[1];
+	const bearerToken = bearerHeader;
 	req.token = bearerToken;
 	next();
 };
